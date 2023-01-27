@@ -6,6 +6,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.6",
     "date-fns": "^2.29.3",
     "gray-matter": "^4.0.3",
     "next": "latest",
