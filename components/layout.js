@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import Header from '../components/header'
+import Header from './header'
+import Footer from './footer'
 import styles from './layout.module.css';
 
 const name = 'Your Name';
@@ -25,6 +26,7 @@ export default function Layout({ children }) {
       </Head>
       <Header />
       {children}
+      <Footer />
     </div>
   )
 }
