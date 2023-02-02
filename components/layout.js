@@ -16,6 +16,10 @@ export default function Layout({ children }) {
           content="Learn how to build a personal website using Next.js"
         />
         <meta
+          name="viewport"
+          content="initial-scale=1, width=device-width"
+        />
+        <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
             siteTitle,
