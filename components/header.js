@@ -10,36 +10,36 @@ export default function Header() {
       <NextLink href="/">Runners Calculator</NextLink>
     </Typography>
     <nav>
-      <NextLink href="/pace/split-pace">
         <Link
           variant="button"
+          component={NextLink}
           color="text.primary"
-          href="#"
           sx={{ my: 1, mx: 1.5 }}
+          href='/pace/negative-split'
         >
-          Features
+          Negative Split
         </Link>
-      </NextLink>
-      <NextLink href="/pace/negative-split">
+      
         <Link
           variant="button"
+          component={NextLink}
           color="text.primary"
-          href="#"
           sx={{ my: 1, mx: 1.5 }}
+          href='/pace/positive-split'
         >
-          Enterprise
+          Positive Split
         </Link>
-      </NextLink>
-      <NextLink href="/pace/positive-split">
+      
         <Link
           variant="button"
+          component={NextLink}
           color="text.primary"
-          href="#"
           sx={{ my: 1, mx: 1.5 }}
+          href='/pace/split-pace'
         >
-          Support
+          Split Pace
         </Link>
-      </NextLink>
+      
     </nav>
   </Toolbar>
   )
