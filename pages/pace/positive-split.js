@@ -1,3 +1,7 @@
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
 import React, { useState } from 'react'
 import SplitTable from '../../components/splitTable';
 
@@ -25,8 +29,8 @@ export default function splitPace() {
     let totalSplit = 0;
     for (let i = 1; i <= Math.ceil(newDistance); i++) {
       const newKm = i > newDistance ? (i - 1) + (distance % 1000 / 1000) : i;
-      if((i - 1) * 1000 <= halfway && i * 1000 >= halfway) {
-        const firstPace =  (halfway - ((i - 1) * 1000)) / 1000 * pace1
+      if ((i - 1) * 1000 <= halfway && i * 1000 >= halfway) {
+        const firstPace = (halfway - ((i - 1) * 1000)) / 1000 * pace1
         const secondPace = ((i) * 1000 - halfway) / 1000 * pace2
         const newPace = firstPace + secondPace;
         totalSplit += newPace
@@ -35,7 +39,7 @@ export default function splitPace() {
           split: millisToMinutesAndSeconds(totalSplit),
           lapTime: millisToMinutesAndSeconds(newPace),
         })
-      } else if(i * 1000 <= halfway) {
+      } else if (i * 1000 <= halfway) {
         totalSplit += pace1
         loops.push({
           km: i,
@@ -43,9 +47,9 @@ export default function splitPace() {
           lapTime: millisToMinutesAndSeconds(pace1),
         })
       } else {
-        totalSplit += i > newDistance ? pace2 * (distance%1000 / 1000): pace2
+        totalSplit += i > newDistance ? pace2 * (distance % 1000 / 1000) : pace2
         loops.push({
-          km: i > newDistance ? (i - 1) + parseFloat(distance%1000 / 1000) : i,
+          km: i > newDistance ? (i - 1) + parseFloat(distance % 1000 / 1000) : i,
           split: millisToMinutesAndSeconds(totalSplit),
           lapTime: millisToMinutesAndSeconds(pace2),
         })
@@ -56,31 +60,27 @@ export default function splitPace() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <ul>
-          <li>
-            <label htmlFor="distance">Distance:</label>
-            <input type="text" id="distance" name="pace_distance" value={distance} onChange={e => setDistance(e.target.value)} />
-          </li>
-          <li>
-            <label htmlFor="time">time:</label>
-            <input type="text" id="time" name="pace_time" value={time} onChange={e => setTime(e.target.value)} />
-          </li>
-          <li>
-            <label htmlFor="positive">positive Split Amount</label>
-            <select name="positive" id="positive" value={positiveSplits} onChange={e => setpositiveSplits(e.target.value)}>
-              <option value={0.1}>10%</option>
-              <option value={0.09}>9%</option>
-              <option value={0.08}>8%</option>
-              <option value={0.07}>7%</option>
-              <option value={0.06}>6%</option>
-              <option value={0.05}>5%</option>
-              <option value={0.04}>4%</option>
-              <option value={0.03}>3%</option>
-              <option value={0.02}>2%</option>
-              <option value={0.01}>1%</option>
-            </select>
-          </li>
-        </ul>
+            <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+            <TextField id="pace-time" label="Time" value={time} onChange={e => setTime(e.target.value)} />
+          <InputLabel id="demo-simple-select-label">Positive Split Amount</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={positiveSplits}
+            label="Age"
+            onChange={e => setpositiveSplits(e.target.value)}
+          >
+            <MenuItem value={0.1}>10%</MenuItem>
+            <MenuItem value={0.09}>9%</MenuItem>
+            <MenuItem value={0.08}>8%</MenuItem>
+            <MenuItem value={0.07}>7%</MenuItem>
+            <MenuItem value={0.06}>6%</MenuItem>
+            <MenuItem value={0.05}>5%</MenuItem>
+            <MenuItem value={0.04}>4%</MenuItem>
+            <MenuItem value={0.03}>3%</MenuItem>
+            <MenuItem value={0.02}>2%</MenuItem>
+            <MenuItem value={0.01}>1%</MenuItem>
+          </Select>
         <input type="submit" value="Submit" />
       </form>
 
