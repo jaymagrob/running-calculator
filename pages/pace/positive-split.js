@@ -2,6 +2,9 @@ import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 import React, { useState } from 'react'
 import SplitTable from '../../components/splitTable';
 
@@ -59,10 +62,27 @@ export default function splitPace() {
   }
   return (
     <>
-      <form onSubmit={onSubmit}>
-            <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
-            <TextField id="pace-time" label="Time" value={time} onChange={e => setTime(e.target.value)} />
-          <InputLabel id="demo-simple-select-label">Positive Split Amount</InputLabel>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            width: '100%',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Positive Split
+          </Typography>
+          <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+          <TextField id="pace-time" label="Time" value={time} onChange={e => setTime(e.target.value)} />
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+          <InputLabel id="demo-simple-select-label">Positive Split Amount:</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -81,11 +101,10 @@ export default function splitPace() {
             <MenuItem value={0.02}>2%</MenuItem>
             <MenuItem value={0.01}>1%</MenuItem>
           </Select>
-        <input type="submit" value="Submit" />
-      </form>
-
+          </Box>
+          <Button variant="contained" onClick={onSubmit}>Submit</Button>
+        </Box>
       <SplitTable splits={splits} />
     </>
   )
-
 }
