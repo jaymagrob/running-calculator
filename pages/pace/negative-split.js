@@ -1,3 +1,10 @@
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 import React, { useState } from 'react'
 import SplitTable from '../../components/splitTable';
 
@@ -55,37 +62,49 @@ export default function splitPace() {
   }
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <ul>
-          <li>
-            <label htmlFor="distance">Distance:</label>
-            <input type="text" id="distance" name="pace_distance" value={distance} onChange={e => setDistance(e.target.value)} />
-          </li>
-          <li>
-            <label htmlFor="time">time:</label>
-            <input type="text" id="time" name="pace_time" value={time} onChange={e => setTime(e.target.value)} />
-          </li>
-          <li>
-            <label htmlFor="negative">Negative Split Amount</label>
-            <select name="negative" id="negative" value={negativeSplits} onChange={e => setNegativeSplits(e.target.value)}>
-              <option value={0.1}>10%</option>
-              <option value={0.09}>9%</option>
-              <option value={0.08}>8%</option>
-              <option value={0.07}>7%</option>
-              <option value={0.06}>6%</option>
-              <option value={0.05}>5%</option>
-              <option value={0.04}>4%</option>
-              <option value={0.03}>3%</option>
-              <option value={0.02}>2%</option>
-              <option value={0.01}>1%</option>
-            </select>
-          </li>
-        </ul>
-        <input type="submit" value="Submit" />
-      </form>
-
-      <SplitTable splits={splits} />
-    </>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2,
+        width: '100%',
+      }}
+    >
+      <Typography component="h1" variant="h5">
+        Negative Split
+      </Typography>
+      <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+      <TextField id="pace-time" label="Time" value={time} onChange={e => setTime(e.target.value)} />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+      <InputLabel id="demo-simple-select-label">Negative Split Amount:</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={negativeSplits}
+        label="Age"
+        onChange={e => setNegativeSplits(e.target.value)}
+      >
+        <MenuItem value={0.1}>10%</MenuItem>
+        <MenuItem value={0.09}>9%</MenuItem>
+        <MenuItem value={0.08}>8%</MenuItem>
+        <MenuItem value={0.07}>7%</MenuItem>
+        <MenuItem value={0.06}>6%</MenuItem>
+        <MenuItem value={0.05}>5%</MenuItem>
+        <MenuItem value={0.04}>4%</MenuItem>
+        <MenuItem value={0.03}>3%</MenuItem>
+        <MenuItem value={0.02}>2%</MenuItem>
+        <MenuItem value={0.01}>1%</MenuItem>
+      </Select>
+      </Box>
+      <Button variant="contained" onClick={onSubmit}>Submit</Button>
+    </Box>
+  <SplitTable splits={splits} />
+  </>
   )
-
 }
