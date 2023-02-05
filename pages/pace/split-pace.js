@@ -1,3 +1,7 @@
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 import React, { useState } from 'react'
 import SplitTable from '../../components/splitTable';
 
@@ -33,22 +37,31 @@ export default function splitPace() {
   }
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <ul>
-          <li>
-            <label htmlFor="distance">Distance:</label>
-            <input type="text" id="distance" name="pace_distance" value={distance} onChange={e => setDistance(e.target.value)} />
-          </li>
-          <li>
-            <label htmlFor="time">time:</label>
-            <input type="text" id="time" name="pace_time" value={time} onChange={e => setTime(e.target.value)} />
-          </li>
-        </ul>
-        <input type="submit" value="Submit" />
-      </form>
-
-      <SplitTable splits={splits} />
-    </>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2,
+        width: '100%',
+      }}
+    >
+      <Typography component="h1" variant="h5">
+        Negative Split
+      </Typography>
+      <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+      <TextField id="pace-time" label="Time" value={time} onChange={e => setTime(e.target.value)} />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+      </Box>
+      <Button variant="contained" onClick={onSubmit}>Submit</Button>
+    </Box>
+  <SplitTable splits={splits} />
+  </>
   )
 
 }
