@@ -58,7 +58,7 @@ export default function splitPace() {
         }}
       >
       </Box>
-      <Button variant="contained" onClick={onSubmit}>Submit</Button>
+      <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
     </Box>
   <SplitTable splits={splits} />
   </>

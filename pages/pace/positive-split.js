@@ -102,7 +102,7 @@ export default function splitPace() {
             <MenuItem value={0.01}>1%</MenuItem>
           </Select>
           </Box>
-          <Button variant="contained" onClick={onSubmit}>Submit</Button>
+          <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
         </Box>
       <SplitTable splits={splits} />
     </>
