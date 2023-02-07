@@ -37,8 +37,8 @@ export default function splitPace() {
     let totalSplit = 0;
     for (let i = 1; i <= Math.ceil(newDistance); i++) {
       const newKm = i > newDistance ? (i - 1) + (distance % 1000 / 1000) : i;
-      if((i - 1) * 1000 <= halfway && i * 1000 >= halfway) {
-        const firstPace =  (halfway - ((i - 1) * 1000)) / 1000 * pace1
+      if ((i - 1) * 1000 <= halfway && i * 1000 >= halfway) {
+        const firstPace = (halfway - ((i - 1) * 1000)) / 1000 * pace1
         const secondPace = ((i) * 1000 - halfway) / 1000 * pace2
         const newPace = firstPace + secondPace;
         totalSplit += newPace
@@ -47,7 +47,7 @@ export default function splitPace() {
           split: millisToMinutesAndSeconds(totalSplit),
           lapTime: millisToMinutesAndSeconds(newPace),
         })
-      } else if(i * 1000 <= halfway) {
+      } else if (i * 1000 <= halfway) {
         totalSplit += pace1
         loops.push({
           km: i,
@@ -55,9 +55,9 @@ export default function splitPace() {
           lapTime: millisToMinutesAndSeconds(pace1),
         })
       } else {
-        totalSplit += i > newDistance ? pace2 * (distance%1000 / 1000): pace2
+        totalSplit += i > newDistance ? pace2 * (distance % 1000 / 1000) : pace2
         loops.push({
-          km: i > newDistance ? (i - 1) + parseFloat(distance%1000 / 1000) : i,
+          km: i > newDistance ? (i - 1) + parseFloat(distance % 1000 / 1000) : i,
           split: millisToMinutesAndSeconds(totalSplit),
           lapTime: millisToMinutesAndSeconds(pace2),
         })
@@ -67,63 +67,63 @@ export default function splitPace() {
   }
   return (
     <>
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 2,
-        width: '100%',
-      }}
-    >
-      <Typography component="h1" variant="h5">
-        Negative Split
-      </Typography>
-      <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <TimePicker
-          ampmInClock
-          views={['minutes', 'seconds']}
-          inputFormat="mm:ss"
-          mask="__:__"
-          label="Minutes and seconds"
-          value={time}
-          onChange={(newTime) => {
-            console.log('here', newTime)
-            setTime(newTime);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
-    </LocalizationProvider>
       <Box
         sx={{
           display: 'flex',
-          alignItems: 'center'
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          width: '100%',
         }}
       >
-      <InputLabel id="demo-simple-select-label">Negative Split Amount:</InputLabel>
-      <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={negativeSplits}
-        label="Age"
-        onChange={e => setNegativeSplits(e.target.value)}
-      >
-        <MenuItem value={0.1}>10%</MenuItem>
-        <MenuItem value={0.09}>9%</MenuItem>
-        <MenuItem value={0.08}>8%</MenuItem>
-        <MenuItem value={0.07}>7%</MenuItem>
-        <MenuItem value={0.06}>6%</MenuItem>
-        <MenuItem value={0.05}>5%</MenuItem>
-        <MenuItem value={0.04}>4%</MenuItem>
-        <MenuItem value={0.03}>3%</MenuItem>
-        <MenuItem value={0.02}>2%</MenuItem>
-        <MenuItem value={0.01}>1%</MenuItem>
-      </Select>
+        <Typography component="h1" variant="h5">
+          Negative Split
+        </Typography>
+        <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <TimePicker
+            ampmInClock
+            views={['minutes', 'seconds']}
+            inputFormat="mm:ss"
+            mask="__:__"
+            label="Minutes and seconds"
+            value={time}
+            onChange={(newTime) => {
+              console.log('here', newTime)
+              setTime(newTime);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <InputLabel id="demo-simple-select-label">Negative Split Amount:</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={negativeSplits}
+            label="Age"
+            onChange={e => setNegativeSplits(e.target.value)}
+          >
+            <MenuItem value={0.1}>10%</MenuItem>
+            <MenuItem value={0.09}>9%</MenuItem>
+            <MenuItem value={0.08}>8%</MenuItem>
+            <MenuItem value={0.07}>7%</MenuItem>
+            <MenuItem value={0.06}>6%</MenuItem>
+            <MenuItem value={0.05}>5%</MenuItem>
+            <MenuItem value={0.04}>4%</MenuItem>
+            <MenuItem value={0.03}>3%</MenuItem>
+            <MenuItem value={0.02}>2%</MenuItem>
+            <MenuItem value={0.01}>1%</MenuItem>
+          </Select>
+        </Box>
+        <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
       </Box>
-      <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
-    </Box>
-  <SplitTable splits={splits} />
-  </>
+      <SplitTable splits={splits} />
+    </>
   )
 }

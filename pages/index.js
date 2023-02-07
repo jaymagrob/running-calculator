@@ -11,6 +11,6 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
-      <div>hold</div>
+    <div>hold</div>
   );
 }

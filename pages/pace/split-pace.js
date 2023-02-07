@@ -32,11 +32,11 @@ export default function splitPace() {
     console.log(pace)
     console.log(millisToMinutesAndSeconds(pace))
     let loops = []
-    for(let i = 1; i <= Math.ceil(newDistance); i++) {
-      const newKm = i > newDistance ? (i - 1) + (distance%1000 / 1000) : i;
+    for (let i = 1; i <= Math.ceil(newDistance); i++) {
+      const newKm = i > newDistance ? (i - 1) + (distance % 1000 / 1000) : i;
 
       loops.push({
-        km: i > newDistance ? (i - 1) + parseFloat(distance%1000 / 1000) : i,
+        km: i > newDistance ? (i - 1) + parseFloat(distance % 1000 / 1000) : i,
         split: millisToMinutesAndSeconds(pace * newKm),
         lapTime: millisToMinutesAndSeconds(pace),
       })
@@ -45,45 +45,45 @@ export default function splitPace() {
   }
   return (
     <>
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 2,
-        width: '100%',
-      }}
-    >
-      <Typography component="h1" variant="h5">
-        Negative Split
-      </Typography>
-      <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <TimePicker
-          ampmInClock
-          views={['minutes', 'seconds']}
-          inputFormat="mm:ss"
-          mask="__:__"
-          label="Minutes and seconds"
-          value={time}
-          onChange={(newTime) => {
-            console.log('here', newTime)
-            setTime(newTime);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
-    </LocalizationProvider>
       <Box
         sx={{
           display: 'flex',
-          alignItems: 'center'
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          width: '100%',
         }}
       >
+        <Typography component="h1" variant="h5">
+          Negative Split
+        </Typography>
+        <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <TimePicker
+            ampmInClock
+            views={['minutes', 'seconds']}
+            inputFormat="mm:ss"
+            mask="__:__"
+            label="Minutes and seconds"
+            value={time}
+            onChange={(newTime) => {
+              console.log('here', newTime)
+              setTime(newTime);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+        </Box>
+        <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
       </Box>
-      <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
-    </Box>
-  <SplitTable splits={splits} />
-  </>
+      <SplitTable splits={splits} />
+    </>
   )
 
 }

@@ -16,10 +16,10 @@ import NextLink from 'next/link';
 
 const drawerWidth = 240;
 const navItems = [
-  {name: 'Home', href: '/'},
-  {name: 'Negative Split', href: '/pace/negative-split' },
-  {name: 'Positive Split', href: '/pace/positive-split' },
-  {name: 'Split Pace', href: '/pace/split-pace' },
+  { name: 'Home', href: '/' },
+  { name: 'Negative Split', href: '/pace/negative-split' },
+  { name: 'Positive Split', href: '/pace/positive-split' },
+  { name: 'Split Pace', href: '/pace/split-pace' },
 ];
 
 export default function DrawerAppBar(props) {
@@ -51,7 +51,7 @@ export default function DrawerAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-<>
+    <>
       <AppBar component="nav">
         <Toolbar>
           <IconButton

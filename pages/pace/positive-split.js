@@ -67,40 +67,40 @@ export default function splitPace() {
   }
   return (
     <>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 2,
+          width: '100%',
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Positive Split
+        </Typography>
+        <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <TimePicker
+            ampmInClock
+            views={['minutes', 'seconds']}
+            inputFormat="mm:ss"
+            mask="__:__"
+            label="Minutes and seconds"
+            value={time}
+            onChange={(newTime) => {
+              console.log('here', newTime)
+              setTime(newTime);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
         <Box
           sx={{
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 2,
-            width: '100%',
+            alignItems: 'center'
           }}
         >
-          <Typography component="h1" variant="h5">
-            Positive Split
-          </Typography>
-          <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <TimePicker
-          ampmInClock
-          views={['minutes', 'seconds']}
-          inputFormat="mm:ss"
-          mask="__:__"
-          label="Minutes and seconds"
-          value={time}
-          onChange={(newTime) => {
-            console.log('here', newTime)
-            setTime(newTime);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
-    </LocalizationProvider>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
           <InputLabel id="demo-simple-select-label">Positive Split Amount:</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -120,9 +120,9 @@ export default function splitPace() {
             <MenuItem value={0.02}>2%</MenuItem>
             <MenuItem value={0.01}>1%</MenuItem>
           </Select>
-          </Box>
-          <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
         </Box>
+        <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
+      </Box>
       <SplitTable splits={splits} />
     </>
   )
