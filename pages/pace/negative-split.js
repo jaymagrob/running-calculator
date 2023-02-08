@@ -79,7 +79,7 @@ export default function splitPace() {
         <Typography component="h1" variant="h5">
           Negative Split
         </Typography>
-        <TextField id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+        <TextField type="number" inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <TimePicker
             ampmInClock
