@@ -17,6 +17,7 @@ export default function splitPace() {
   const [time, setTime] = React.useState(dayjs('2022-01-01'));
   const [negativeSplits, setNegativeSplits] = useState(0.05);
   const [splits, setSplits] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   function onSubmit(e) {
     e.preventDefault()
@@ -25,6 +26,14 @@ export default function splitPace() {
       var seconds = ((millis % 60000) / 1000).toFixed(0);
       return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
+
+    if (parseFloat(distance) > 0 && parseFloat(distance) <= 100000) {
+      setIsError(false)
+    } else {
+      setIsError(true)
+      return;
+    }
+
     const minute = time.$m
     const seconds = time.$s
     const milli = (minute * 60 * 1000) + seconds * 1000;
@@ -79,7 +88,16 @@ export default function splitPace() {
         <Typography component="h1" variant="h5">
           Negative Split
         </Typography>
-        <TextField type="number" inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} id="distance" label="Distance" value={distance} onChange={e => setDistance(e.target.value)} />
+        <TextField
+          type="number"
+          inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+          id="distance"
+          label="Distance"
+          value={distance}
+          onChange={e => setDistance(e.target.value)}
+          error={isError}
+          helperText={isError ? "Between 1 and 100,000" : null}
+        />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <TimePicker
             ampmInClock
