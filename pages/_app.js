@@ -6,7 +6,7 @@ import '../styles/globals.scss'
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     TagManager.initialize({id: 'GTM-5D3WFXG'})
-  });
+  }, []);
 
   return (
     <Layout>
