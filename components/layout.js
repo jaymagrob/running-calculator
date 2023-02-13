@@ -51,7 +51,7 @@ export default function Layout({ children }) {
         height="0" width="0" style="display:none;visibility:hidden"></iframe>`}}>
         </noscript>
         <Header />
-        <Box sx={{ marginTop: 8 }}>
+        <Box sx={{ marginTop: 13 }}>
           {children}
         </Box>
         <Box
