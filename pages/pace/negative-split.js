@@ -3,6 +3,7 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import dayjs from 'dayjs';
@@ -76,6 +77,7 @@ export default function splitPace() {
   }
   return (
     <>
+    <Container sx={{ minHeight: 'calc(100vh - 100px)'}}>
       <Box
         sx={{
           display: 'flex',
@@ -142,6 +144,39 @@ export default function splitPace() {
         <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
       </Box>
       <SplitTable splits={splits} />
+      </Container>
+      <Container maxwidth="sm">
+        <Typography
+          component="h3"
+          variant="h6"
+          align="center"
+          color="text.primary"
+          >
+            What are negative splits
+          </Typography>
+          <Typography
+          align="center"
+          color="text.secondary"
+          paragraph
+          >
+            Negative splits are a running strategy where a runner completes the second half of a run faster than the first half. This means that the runner's pace gradually increases over the course of the run, allowing them to finish strong and potentially achieve a faster overall time. For example, a runner might aim to run the first half of a 10K at a slower pace than the second half, in order to conserve energy and then pick up the pace later on. Negative splits can be an effective strategy for runners who want to improve their endurance, speed, and mental toughness, as it requires a certain level of discipline and self-awareness to maintain a steady pace early on and then increase it later in the run.
+          </Typography>
+          <Typography
+          component="h3"
+          variant="h6"
+          align="center"
+          color="text.primary"
+          >
+            Benefits of negative splits
+          </Typography>
+          <Typography
+          align="center"
+          color="text.secondary"
+          paragraph
+          >
+            The benefits of negative splits when running are numerous. First, by starting out slower, the runner conserves energy and reduces the risk of burning out early in the run. This can lead to a more consistent overall pace and prevent the runner from hitting a "wall" later on. Second, running negative splits can help build mental toughness and confidence, as the runner gains momentum and energy throughout the run. Third, it can lead to faster overall times, as the runner is able to maintain a faster pace in the second half of the run. Finally, negative splits can be a useful training tool for building endurance and improving speed, as they require the runner to maintain a steady pace and gradually increase their effort over the course of the run. Overall, running negative splits can be an effective strategy for runners who want to improve their performance and reach their goals.
+          </Typography>
+      </Container>
     </>
   )
 }

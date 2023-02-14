@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import dayjs from 'dayjs';
+import Container from '@mui/material/Container'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
@@ -50,6 +51,7 @@ export default function splitPace() {
   }
   return (
     <>
+    <Container sx={{ minHeight: 'calc(100vh - 100px)'}}>
       <Box
         sx={{
           display: 'flex',
@@ -97,6 +99,24 @@ export default function splitPace() {
         <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
       </Box>
       <SplitTable splits={splits} />
+      </Container>
+      <Container maxwidth="sm">
+        <Typography
+          component="h3"
+          variant="h6"
+          align="center"
+          color="text.primary"
+          >
+            What are running splits
+          </Typography>
+          <Typography
+          align="center"
+          color="text.secondary"
+          paragraph
+          >
+            A running pace is a measure of how quickly a runner is covering a certain distance, typically expressed in terms of minutes per mile or kilometers. It represents the amount of time it takes for a runner to cover each unit of distance, such as a mile or a kilometer, and is often used as a benchmark for measuring running performance and setting goals. Running pace can vary depending on a number of factors, such as terrain, weather conditions, elevation, and the runner's physical fitness and training level. Runners often use pace as a way to monitor and adjust their effort during a run, in order to maintain a steady and sustainable pace over a certain distance or time period.
+          </Typography>
+      </Container>
     </>
   )
 

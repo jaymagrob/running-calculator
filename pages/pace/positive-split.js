@@ -3,6 +3,7 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import dayjs from 'dayjs';
@@ -76,6 +77,7 @@ export default function splitPace() {
   }
   return (
     <>
+    <Container sx={{ minHeight: 'calc(100vh - 100px)'}}>
       <Box
         sx={{
           display: 'flex',
@@ -116,7 +118,7 @@ export default function splitPace() {
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <InputLabel id="demo-simple-select-label">Positive Split Amount:</InputLabel>
@@ -142,6 +144,39 @@ export default function splitPace() {
         <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
       </Box>
       <SplitTable splits={splits} />
+      </Container>
+      <Container maxwidth="sm">
+        <Typography
+          component="h3"
+          variant="h6"
+          align="center"
+          color="text.primary"
+          >
+            What are positive splits
+          </Typography>
+          <Typography
+          align="center"
+          color="text.secondary"
+          paragraph
+          >
+            Positive splits in running refer to a strategy where a runner completes the first half of a run faster than the second half. This means that the runner's pace gradually decreases over the course of the run, potentially leading to a slower overall time. For example, a runner might start out a 5K at a fast pace, but then tire out and slow down in the second half of the race. Positive splits can occur due to a variety of factors, such as starting out too fast, inadequate training or preparation, or poor pacing strategies. While positive splits may be unavoidable in some situations, they are generally considered a less desirable running strategy than negative splits, as they can lead to fatigue, injury, and suboptimal performance.
+          </Typography>
+          <Typography
+          component="h3"
+          variant="h6"
+          align="center"
+          color="text.primary"
+          >
+            What are the benefits of psotive splits
+          </Typography>
+          <Typography
+          align="center"
+          color="text.secondary"
+          paragraph
+          >
+            While negative splits are generally considered a more effective and efficient running strategy, there are some potential benefits to running positive splits in certain situations. One possible benefit is that running at a faster pace in the first half of a run can provide an adrenaline boost and create a feeling of excitement and motivation, which can be helpful for some runners. Additionally, positive splits can be a useful training tool for building mental toughness, as they require the runner to push through fatigue and maintain a steady effort, even when they are feeling tired. Positive splits can also be a useful strategy for runners who are looking to gradually increase their pace and build their endurance over time, as they allow the runner to gradually increase their effort and intensity. Overall, while negative splits are generally considered the most effective and efficient running strategy, there are some situations where positive splits may be useful or appropriate for certain runners.
+          </Typography>
+      </Container>
     </>
   )
 }
