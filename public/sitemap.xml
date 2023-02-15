@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+  <url>
+    <loc>{domain}</loc>
+    <lastmod>2020-03-26</lastmod>
+  </url>
+    <url>
+    <loc>{domain}/pace/negative-split</loc>
+    <lastmod>2020-03-26</lastmod>
+  </url>
+    </url>
+    <url>
+    <loc>{domain}/pace/positive-split</loc>
+    <lastmod>2020-03-26</lastmod>
+  </url>
+    </url>
+    <url>
+    <loc>{domain}/pace/split-pace</loc>
+    <lastmod>2020-03-26</lastmod>
+</urlset>
+
+
+

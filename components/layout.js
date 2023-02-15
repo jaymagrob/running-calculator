@@ -19,10 +19,11 @@ export default function Layout({ children }) {
         }}
       >
         <Head>
+          <title>Runner's Calculators: A collection of calculators to help you reach your running goals</title>
           <link rel="icon" href="/favicon.ico" />
           <meta
             name="description"
-            content="Learn how to build a personal website using Next.js"
+            content="Runner's Calculators are a collection of calculators to help you calculate your pace, energy and splits."
           />
           <meta
             name="viewport"

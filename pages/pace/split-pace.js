@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import dayjs from 'dayjs';
+import Head from 'next/head';
 import Container from '@mui/material/Container'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -24,7 +25,7 @@ export default function splitPace() {
       return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
 
-    if(parseFloat(distance) > 0 && parseFloat(distance) <= 100000) {
+    if (parseFloat(distance) > 0 && parseFloat(distance) <= 100000) {
       setIsError(false)
     } else {
       setIsError(true)
@@ -51,54 +52,61 @@ export default function splitPace() {
   }
   return (
     <>
-    <Container sx={{ minHeight: 'calc(100vh - 100px)'}}>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 2,
-          width: '100%',
-        }}
-      >
-        <Typography component="h1" variant="h5">
-          Split Pace
-        </Typography>
-        <TextField
-          type="number"
-          inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} 
-          id="distance" 
-          label="Distance" 
-          value={distance}
-          onChange={e => setDistance(e.target.value)}
-          error={isError}
-          helperText={isError ? "Between 1 and 100,000" : null}
-          />
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <TimePicker
-            ampmInClock
-            views={['minutes', 'seconds']}
-            inputFormat="mm:ss"
-            mask="__:__"
-            label="Minutes and seconds"
-            value={time}
-            onChange={(newTime) => {
-              console.log('here', newTime)
-              setTime(newTime);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
+      <Head>
+        <title>Split Pace Calculator: Runner's Calculators</title>
+        <meta
+          name="description"
+          content="Take your running to the next level with our split pace calculator. Whether you're looking to achieve a negative split or a positive split, our tool will help you calculate the optimal pace for each half of your run. Stay on track, set new personal bests, and become a stronger runner with our split pace calculator. Try it now!"
+        />
+      </Head>
+      <Container sx={{ minHeight: 'calc(100vh - 100px)' }}>
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'center'
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 2,
+            width: '100%',
           }}
         >
+          <Typography component="h1" variant="h5">
+            Split Pace
+          </Typography>
+          <TextField
+            type="number"
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            id="distance"
+            label="Distance"
+            value={distance}
+            onChange={e => setDistance(e.target.value)}
+            error={isError}
+            helperText={isError ? "Between 1 and 100,000" : null}
+          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <TimePicker
+              ampmInClock
+              views={['minutes', 'seconds']}
+              inputFormat="mm:ss"
+              mask="__:__"
+              label="Minutes and seconds"
+              value={time}
+              onChange={(newTime) => {
+                console.log('here', newTime)
+                setTime(newTime);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+          </Box>
+          <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
         </Box>
-        <Button variant="contained" onClick={onSubmit}>Calculate Splits</Button>
-      </Box>
-      <SplitTable splits={splits} />
+        <SplitTable splits={splits} />
       </Container>
       <Container maxwidth="sm">
         <Typography
@@ -106,16 +114,16 @@ export default function splitPace() {
           variant="h6"
           align="center"
           color="text.primary"
-          >
-            What are running splits
-          </Typography>
-          <Typography
+        >
+          What are running splits
+        </Typography>
+        <Typography
           align="center"
           color="text.secondary"
           paragraph
-          >
-            A running pace is a measure of how quickly a runner is covering a certain distance, typically expressed in terms of minutes per mile or kilometers. It represents the amount of time it takes for a runner to cover each unit of distance, such as a mile or a kilometer, and is often used as a benchmark for measuring running performance and setting goals. Running pace can vary depending on a number of factors, such as terrain, weather conditions, elevation, and the runner's physical fitness and training level. Runners often use pace as a way to monitor and adjust their effort during a run, in order to maintain a steady and sustainable pace over a certain distance or time period.
-          </Typography>
+        >
+          A running pace is a measure of how quickly a runner is covering a certain distance, typically expressed in terms of minutes per mile or kilometers. It represents the amount of time it takes for a runner to cover each unit of distance, such as a mile or a kilometer, and is often used as a benchmark for measuring running performance and setting goals. Running pace can vary depending on a number of factors, such as terrain, weather conditions, elevation, and the runner's physical fitness and training level. Runners often use pace as a way to monitor and adjust their effort during a run, in order to maintain a steady and sustainable pace over a certain distance or time period.
+        </Typography>
       </Container>
     </>
   )

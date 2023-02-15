@@ -1,0 +1,5 @@
+Sitemap: https://www.CHANGEWHENDOMAINPURCHASED.com/sitemap.xml
+
+User-agent: *
+Disallow:
+Allow: /

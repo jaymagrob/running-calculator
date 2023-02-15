@@ -2,6 +2,7 @@ import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import Head from 'next/head';
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -77,6 +78,14 @@ export default function splitPace() {
   }
   return (
     <>
+    <Head>
+      <title>Negative Split Calculator: Runner's Calculators</title>
+          <link rel="icon" href="/favicon.ico" />
+          <meta
+            name="description"
+            content="Looking to improve your running performance? Use our negative split calculator to calculate the optimal pace for each half of your run and achieve a negative split. Get faster, stronger and smarter with our tool. Try it now!"
+          />
+    </Head>
     <Container sx={{ minHeight: 'calc(100vh - 100px)'}}>
       <Box
         sx={{
