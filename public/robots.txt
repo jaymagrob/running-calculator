@@ -1,4 +1,4 @@
-Sitemap: https://www.CHANGEWHENDOMAINPURCHASED.com/sitemap.xml
+Sitemap: https://www.runnerscalculators.com/sitemap.xml
 
 User-agent: *
 Disallow:
