@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -22,9 +22,14 @@ const navItems = [
   { name: "Split Pace", href: "/pace/split-pace" },
 ];
 
-export default function DrawerAppBar(props) {
+type Props = {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  window?: Function;
+};
+
+export default function Header(props: Props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -33,7 +38,7 @@ export default function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        Runners Calculator
+        Runner&#39;s Calculators
       </Typography>
       <Divider />
       <List>
@@ -73,7 +78,7 @@ export default function DrawerAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Runner's Calculators
+            Runner&#39;s Calculators
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (

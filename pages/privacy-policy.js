@@ -4,5 +4,5 @@ export default function privacyPolicy() {
       <h1>Privacy Policy</h1>
       <div>add info later</div>
     </>
-  )
+  );
 }

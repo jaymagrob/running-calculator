@@ -3,7 +3,13 @@ import Box from "@mui/material/Box";
 import Header from "./header";
 import Footer from "./footer";
 
-export default function Layout({ children }) {
+type Props = {
+  children: JSX.Element | JSX.Element[];
+};
+
+export default function Layout(props: Props) {
+  const { children } = props;
+
   return (
     <>
       <Box
@@ -15,8 +21,8 @@ export default function Layout({ children }) {
       >
         <Head>
           <title>
-            Runner's Calculators: A collection of calculators to help you reach
-            your running goals
+            Runner&#39;s Calculators: A collection of calculators to help you
+            reach your running goals
           </title>
           <link rel="icon" href="/favicon.ico" />
           <meta
