@@ -9,7 +9,6 @@ export default function Footer() {
   const navItems = [
     { href: "/privacy-policy", name: "Privacy Policy" },
     { href: "/terms-of-use", name: "Terms Of Use" },
-    { href: "/sitemap", name: "Sitemap" },
   ];
 
   return (
@@ -21,7 +20,6 @@ export default function Footer() {
           alignItems: "center",
         }}
       >
-        © 2023 Magnus Klein Ltd
         <List
           sx={{
             display: "flex",
@@ -41,6 +39,7 @@ export default function Footer() {
             </ListItem>
           ))}
         </List>
+        © 2023 Magnus Klein Ltd
       </Box>
     </footer>
   );
