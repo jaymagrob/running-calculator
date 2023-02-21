@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<url>
-  <loc>https://www.runnerscalculators.com/</loc>
-  <lastmod>2020-03-26</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://www.runnerscalculators.com//pace/negative-split</loc>
-  <lastmod>2020-03-26</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.runnerscalculators.com//pace/positive-split</loc>
-  <lastmod>2020-03-26</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.runnerscalculators.com//pace/split-pace</loc>
-  <lastmod>2020-03-26</lastmod>
-  <priority>0.80</priority>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.runnerscalculators.com/</loc>
+    <lastmod>2020-03-26</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://www.runnerscalculators.com//pace/negative-split</loc>
+    <lastmod>2020-03-26</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.runnerscalculators.com//pace/positive-split</loc>
+    <lastmod>2020-03-26</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.runnerscalculators.com//pace/split-pace</loc>
+    <lastmod>2020-03-26</lastmod>
+    <priority>0.80</priority>
+  </url>
 </urlset>
