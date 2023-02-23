@@ -26,6 +26,11 @@ export default function Home() {
       description:
         "Calculate the pacing needed to run first half faster than the second.",
     },
+    {
+      name: "Pace Convertor",
+      href: "/pace-convertor",
+      description: "Convert your time per mile to time per kilometer.",
+    },
   ];
 
   return (

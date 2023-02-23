@@ -1,7 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import dayjs from "dayjs";
 import Head from "next/head";
 import Container from "@mui/material/Container";
@@ -45,8 +44,37 @@ export default function splitPace() {
               label="Pace Per Mile"
               value={mph}
               onChange={(newTime) => {
-                console.log("here---35345", newTime);
+                if (!newTime) {
+                  return;
+                }
                 setMph(newTime);
+                const a = 1.609344;
+                const b = newTime.$m;
+                const c = newTime.$s;
+                const milli = Math.round(c + (b * 60) / a);
+                setKpm(dayjs.unix(milli));
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <TimePicker
+              ampmInClock
+              views={["minutes", "seconds"]}
+              inputFormat="mm:ss"
+              mask="__:__"
+              label="Pace Per Km"
+              value={kpm}
+              onChange={(newTime) => {
+                if (!newTime) {
+                  return;
+                }
+                setKpm(newTime);
+                const a = 1.609344;
+                const b = newTime.$m;
+                const c = newTime.$s;
+                const milli = Math.round((c + b * 60) * a);
+                setMph(dayjs.unix(milli));
               }}
               renderInput={(params) => <TextField {...params} />}
             />

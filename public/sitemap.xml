@@ -6,17 +6,22 @@
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://www.runnerscalculators.com//pace/negative-split</loc>
+    <loc>https://www.runnerscalculators.com/pace/negative-split</loc>
     <lastmod>2020-03-26</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.runnerscalculators.com//pace/positive-split</loc>
+    <loc>https://www.runnerscalculators.com/pace/positive-split</loc>
     <lastmod>2020-03-26</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.runnerscalculators.com//pace/split-pace</loc>
+    <loc>https://www.runnerscalculators.com/pace/split-pace</loc>
+    <lastmod>2020-03-26</lastmod>
+    <priority>0.80</priority>
+  </url>
+    <url>
+    <loc>https://www.runnerscalculators.com/pace-convertor</loc>
     <lastmod>2020-03-26</lastmod>
     <priority>0.80</priority>
   </url>

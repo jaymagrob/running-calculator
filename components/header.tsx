@@ -20,6 +20,7 @@ const navItems = [
   { name: "Negative Split", href: "/pace/negative-split" },
   { name: "Positive Split", href: "/pace/positive-split" },
   { name: "Split Pace", href: "/pace/split-pace" },
+  { name: "Pace Convertor", href: "/pace-convertor" },
 ];
 
 type Props = {
