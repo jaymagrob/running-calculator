@@ -8,12 +8,12 @@ import Container from "@mui/material/Container";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import React, { useState } from "react";
+import { useState } from "react";
 import SplitTable from "../../components/splitTable";
 
 export default function splitPace() {
-  const [distance, setDistance] = useState("5400");
-  const [time, setTime] = React.useState(dayjs("2022-01-01"));
+  const [distance, setDistance] = useState("5000");
+  const [time, setTime] = useState(dayjs("2022-01-01 00:20:00"));
   const [splits, setSplits] = useState([]);
   const [isError, setIsError] = useState(false);
 
@@ -36,10 +36,8 @@ export default function splitPace() {
     const milli = minute * 60 * 1000 + seconds * 1000;
     const newDistance = distance / 1000;
     const pace = milli / newDistance;
-    console.log(pace);
-    console.log(millisToMinutesAndSeconds(pace));
     const loops = [];
-    for (let i = 1; i <= Math.ceil(newDistance); i++) {
+    for (let i = 1; i <= Math.ceil(newDistance); i += 1) {
       const newKm = i > newDistance ? i - 1 + (distance % 1000) / 1000 : i;
 
       loops.push({
@@ -53,7 +51,7 @@ export default function splitPace() {
   return (
     <>
       <Head>
-        <title>Split Pace Calculator: Runner's Calculators</title>
+        <title>Split Pace Calculator: Runner&apos;s Calculators</title>
         <meta
           name="description"
           content="Take your running to the next level with our split pace calculator. Whether you're looking to achieve a negative split or a positive split, our tool will help you calculate the optimal pace for each half of your run. Stay on track, set new personal bests, and become a stronger runner with our split pace calculator. Try it now!"
@@ -91,7 +89,6 @@ export default function splitPace() {
               label="Minutes and seconds"
               value={time}
               onChange={(newTime) => {
-                console.log("here", newTime);
                 setTime(newTime);
               }}
               renderInput={(params) => <TextField {...params} />}
@@ -103,13 +100,13 @@ export default function splitPace() {
               alignItems: "center",
             }}
           />
-          <Button variant="contained" onClick={onSubmit}>
+          <Button variant="contained" onClick={(e) => onSubmit(e)}>
             Calculate Splits
           </Button>
         </Box>
         <SplitTable splits={splits} />
       </Container>
-      <Container maxwidth="sm">
+      <Container maxWidth="sm">
         <Typography
           component="h3"
           variant="h6"
@@ -125,7 +122,7 @@ export default function splitPace() {
           cover each unit of distance, such as a mile or a kilometer, and is
           often used as a benchmark for measuring running performance and
           setting goals. Running pace can vary depending on a number of factors,
-          such as terrain, weather conditions, elevation, and the runner's
+          such as terrain, weather conditions, elevation, and the runner&apos;s
           physical fitness and training level. Runners often use pace as a way
           to monitor and adjust their effort during a run, in order to maintain
           a steady and sustainable pace over a certain distance or time period.

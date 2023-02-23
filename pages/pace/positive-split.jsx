@@ -1,3 +1,4 @@
+/* tslint:disable */
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
@@ -11,12 +12,12 @@ import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import React, { useState } from "react";
+import { useState } from "react";
 import SplitTable from "../../components/splitTable";
 
 export default function splitPace() {
-  const [distance, setDistance] = useState("5400");
-  const [time, setTime] = React.useState(dayjs("2022-01-01"));
+  const [distance, setDistance] = useState("5000");
+  const [time, setTime] = useState(dayjs("2022-01-01 00:20:00"));
   const [positiveSplits, setpositiveSplits] = useState(0.05);
   const [splits, setSplits] = useState([]);
   const [isError, setIsError] = useState(false);
@@ -46,8 +47,7 @@ export default function splitPace() {
     const halfway = distance / 2;
     const loops = [];
     let totalSplit = 0;
-    for (let i = 1; i <= Math.ceil(newDistance); i++) {
-      const newKm = i > newDistance ? i - 1 + (distance % 1000) / 1000 : i;
+    for (let i = 1; i <= Math.ceil(newDistance); i += 1) {
       if ((i - 1) * 1000 <= halfway && i * 1000 >= halfway) {
         const firstPace = ((halfway - (i - 1) * 1000) / 1000) * pace1;
         const secondPace = ((i * 1000 - halfway) / 1000) * pace2;
@@ -81,7 +81,7 @@ export default function splitPace() {
   return (
     <>
       <Head>
-        <title>Positive Split Calculator: Runner's Calculators</title>
+        <title>Positive Split Calculator: Runner&apos;s Calculators</title>
         <meta
           name="description"
           content="If you're a runner looking to take on a challenge, try our positive split calculator to help you pace your runs to finish stronger than you started. Our tool will help you calculate the optimal pace for each half of your run to achieve a positive split. Don't settle for mediocrity, push yourself to new heights with our positive split calculator. Try it now!"
@@ -119,7 +119,6 @@ export default function splitPace() {
               label="Minutes and seconds"
               value={time}
               onChange={(newTime) => {
-                console.log("here", newTime);
                 setTime(newTime);
               }}
               renderInput={(params) => <TextField {...params} />}
@@ -153,7 +152,7 @@ export default function splitPace() {
               <MenuItem value={0.01}>1%</MenuItem>
             </Select>
           </Box>
-          <Button variant="contained" onClick={onSubmit}>
+          <Button variant="contained" onClick={(e) => onSubmit(e)}>
             Calculate Splits
           </Button>
         </Box>
@@ -171,11 +170,11 @@ export default function splitPace() {
         <Typography align="center" color="text.secondary" paragraph>
           Positive splits in running refer to a strategy where a runner
           completes the first half of a run faster than the second half. This
-          means that the runner's pace gradually decreases over the course of
-          the run, potentially leading to a slower overall time. For example, a
-          runner might start out a 5K at a fast pace, but then tire out and slow
-          down in the second half of the race. Positive splits can occur due to
-          a variety of factors, such as starting out too fast, inadequate
+          means that the runner&apos;s pace gradually decreases over the course
+          of the run, potentially leading to a slower overall time. For example,
+          a runner might start out a 5K at a fast pace, but then tire out and
+          slow down in the second half of the race. Positive splits can occur
+          due to a variety of factors, such as starting out too fast, inadequate
           training or preparation, or poor pacing strategies. While positive
           splits may be unavoidable in some situations, they are generally
           considered a less desirable running strategy than negative splits, as

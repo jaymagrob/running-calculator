@@ -15,8 +15,8 @@ import { useState } from "react";
 import SplitTable from "../../components/splitTable";
 
 export default function splitPace() {
-  const [distance, setDistance] = useState("5400");
-  const [time, setTime] = useState(dayjs("2022-01-01"));
+  const [distance, setDistance] = useState("5000");
+  const [time, setTime] = useState(dayjs("2022-01-01 00:20:00"));
   const [negativeSplits, setNegativeSplits] = useState(0.05);
   const [splits, setSplits] = useState([]);
   const [isError, setIsError] = useState(false);
