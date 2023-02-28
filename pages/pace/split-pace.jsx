@@ -2,6 +2,10 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import dayjs from "dayjs";
 import Head from "next/head";
 import Container from "@mui/material/Container";
@@ -11,11 +15,32 @@ import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useState } from "react";
 import SplitTable from "../../components/splitTable";
 
+function convertKtM(a) {
+  return a / 1.609344;
+}
+
+function convertMtK(a) {
+  return a * 1.609344;
+}
+
+const popularList = [
+  { value: "0", label: "5km", k: 5, m: convertKtM(5) },
+  { value: "1", label: "10km", k: 10, m: convertKtM(10) },
+  { value: "2", label: "5 miles", k: convertMtK(5), m: 5 },
+  { value: "3", label: "15km", k: 15, m: convertKtM(15) },
+  { value: "4", label: "10 miles", k: convertMtK(10), m: 10 },
+  { value: "5", label: "Half Marathon", k: convertMtK(13.1), m: 13.1 },
+  { value: "6", label: "Marathon", k: convertMtK(26.2), m: 26.2 },
+  { value: "7", label: "50km", k: 50, m: convertKtM(50) },
+];
+
 export default function splitPace() {
-  const [distance, setDistance] = useState("5000");
+  const [distance, setDistance] = useState(5);
   const [time, setTime] = useState(dayjs("2022-01-01 00:20:00"));
   const [splits, setSplits] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [metric, setMetric] = useState("k");
+  const [popular, setPopular] = useState(null);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -25,7 +50,7 @@ export default function splitPace() {
       return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
     }
 
-    if (parseFloat(distance) > 0 && parseFloat(distance) <= 100000) {
+    if (parseFloat(distance) > 0 && parseFloat(distance) <= 200) {
       setIsError(false);
     } else {
       setIsError(true);
@@ -34,7 +59,7 @@ export default function splitPace() {
     const minute = time.$m;
     const seconds = time.$s;
     const milli = minute * 60 * 1000 + seconds * 1000;
-    const newDistance = distance / 1000;
+    const newDistance = distance;
     const pace = milli / newDistance;
     const loops = [];
     for (let i = 1; i <= Math.ceil(newDistance); i += 1) {
@@ -72,14 +97,62 @@ export default function splitPace() {
           </Typography>
           <TextField
             type="number"
-            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+            inputProps={{ min: "0", max: "200", step: "1" }}
             id="distance"
             label="Distance"
             value={distance}
             onChange={(e) => setDistance(e.target.value)}
             error={isError}
-            helperText={isError ? "Between 1 and 100,000" : null}
+            helperText={isError ? "Between 0 and 200" : null}
           />
+          <FormControl>
+            <InputLabel id="metric-select-label">Metric</InputLabel>
+            <Select
+              labelId="metric-select-label"
+              id="metric-select"
+              value={metric}
+              label="Metric"
+              onChange={(e) => {
+                const metric2 = e.target.value;
+                if (metric2 === "k") {
+                  setDistance(convertMtK(distance));
+                }
+                if (metric2 === "m") {
+                  setDistance(convertKtM(distance));
+                }
+                setMetric(metric2);
+              }}
+            >
+              <MenuItem value="k">Kilometers</MenuItem>
+              <MenuItem value="m">Miles</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl>
+            <InputLabel id="popular-select-label">Popular</InputLabel>
+            <Select
+              labelId="popular-select-label"
+              id="popular-select"
+              value={popular}
+              label="popular"
+              onChange={(e) => {
+                console.log("here1");
+                const { value } = e.target;
+                console.log("here1", value);
+                setPopular(value);
+                console.log("here1");
+                const data = popularList.find((i) => i.value === value);
+                console.log("here1");
+                setDistance(data[metric]);
+                console.log("here1");
+              }}
+            >
+              {popularList.map((item) => (
+                <MenuItem key={item.label} value={item.value}>
+                  {item.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TimePicker
               ampmInClock
