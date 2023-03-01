@@ -135,15 +135,10 @@ export default function splitPace() {
               value={popular}
               label="popular"
               onChange={(e) => {
-                console.log("here1");
                 const { value } = e.target;
-                console.log("here1", value);
                 setPopular(value);
-                console.log("here1");
                 const data = popularList.find((i) => i.value === value);
-                console.log("here1");
                 setDistance(data[metric]);
-                console.log("here1");
               }}
             >
               {popularList.map((item) => (
