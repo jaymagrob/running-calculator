@@ -35,11 +35,11 @@ const popularList = [
 ];
 
 export default function splitPace() {
-  const [distance, setDistance] = useState(5);
+  const [distance, setDistance] = useState(3.2);
   const [time, setTime] = useState(dayjs("2022-01-01 00:20:00"));
   const [splits, setSplits] = useState([]);
   const [isError, setIsError] = useState(false);
-  const [metric, setMetric] = useState("k");
+  const [metric, setMetric] = useState("m");
   const [popular, setPopular] = useState(null);
 
   function onSubmit(e) {
@@ -63,10 +63,10 @@ export default function splitPace() {
     const pace = milli / newDistance;
     const loops = [];
     for (let i = 1; i <= Math.ceil(newDistance); i += 1) {
-      const newKm = i > newDistance ? i - 1 + (distance % 1000) / 1000 : i;
+      const newKm = i > newDistance ? distance : i;
 
       loops.push({
-        km: i > newDistance ? i - 1 + parseFloat((distance % 1000) / 1000) : i,
+        km: i > newDistance ? distance : i,
         split: millisToMinutesAndSeconds(pace * newKm),
         lapTime: millisToMinutesAndSeconds(pace),
       });
@@ -90,22 +90,26 @@ export default function splitPace() {
             alignItems: "center",
             gap: 2,
             width: "100%",
+            maxWidth: "200px",
+            margin: "0 auto",
           }}
         >
           <Typography component="h1" variant="h5">
             Split Pace
           </Typography>
-          <TextField
-            type="number"
-            inputProps={{ min: "0", max: "200", step: "1" }}
-            id="distance"
-            label="Distance"
-            value={distance}
-            onChange={(e) => setDistance(e.target.value)}
-            error={isError}
-            helperText={isError ? "Between 0 and 200" : null}
-          />
-          <FormControl>
+          <FormControl fullWidth>
+            <TextField
+              type="number"
+              inputProps={{ min: "0", max: "200", step: "1" }}
+              id="distance"
+              label="Distance"
+              value={distance}
+              onChange={(e) => setDistance(e.target.value)}
+              error={isError}
+              helperText={isError ? "Between 0 and 200" : null}
+            />
+          </FormControl>
+          <FormControl fullWidth>
             <InputLabel id="metric-select-label">Metric</InputLabel>
             <Select
               labelId="metric-select-label"
@@ -127,7 +131,7 @@ export default function splitPace() {
               <MenuItem value="m">Miles</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
+          <FormControl fullWidth>
             <InputLabel id="popular-select-label">Popular</InputLabel>
             <Select
               labelId="popular-select-label"
