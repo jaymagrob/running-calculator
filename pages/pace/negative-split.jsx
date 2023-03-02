@@ -35,7 +35,7 @@ const popularList = [
 ];
 
 export default function splitPace() {
-  const [distance, setDistance] = useState("5000");
+  const [distance, setDistance] = useState("5");
   const [time, setTime] = useState(dayjs("2022-01-01 00:20:00"));
   const [negativeSplits, setNegativeSplits] = useState(0.05);
   const [splits, setSplits] = useState([]);
@@ -51,7 +51,7 @@ export default function splitPace() {
       return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
     }
 
-    if (parseFloat(distance) > 0 && parseFloat(distance) <= 100000) {
+    if (parseFloat(distance) > 0 && parseFloat(distance) <= 200) {
       setIsError(false);
     } else {
       setIsError(true);
@@ -61,14 +61,14 @@ export default function splitPace() {
     const minute = time.$m;
     const seconds = time.$s;
     const milli = minute * 60 * 1000 + seconds * 1000;
-    const newDistance = distance / 1000;
-    const pace = milli / newDistance;
+    const newDistance = distance * 1000;
+    const pace = milli / distance;
     const pace1 = pace * (1 + negativeSplits);
     const pace2 = pace * (1 - negativeSplits);
-    const halfway = distance / 2;
+    const halfway = newDistance / 2;
     const loops = [];
     let totalSplit = 0;
-    for (let i = 1; i <= Math.ceil(newDistance); i += 1) {
+    for (let i = 1; i <= Math.ceil(distance); i += 1) {
       if ((i - 1) * 1000 <= halfway && i * 1000 >= halfway) {
         const firstPace = ((halfway - (i - 1) * 1000) / 1000) * pace1;
         const secondPace = ((i * 1000 - halfway) / 1000) * pace2;
@@ -88,10 +88,10 @@ export default function splitPace() {
         });
       } else {
         totalSplit +=
-          i > newDistance ? pace2 * ((distance % 1000) / 1000) : pace2;
+          i > distance ? pace2 * ((newDistance % 1000) / 1000) : pace2;
         loops.push({
           km:
-            i > newDistance ? i - 1 + parseFloat((distance % 1000) / 1000) : i,
+            i > distance ? i - 1 + parseFloat((newDistance % 1000) / 1000) : i,
           split: millisToMinutesAndSeconds(totalSplit),
           lapTime: millisToMinutesAndSeconds(pace2),
         });
@@ -117,22 +117,26 @@ export default function splitPace() {
             alignItems: "center",
             gap: 2,
             width: "100%",
+            maxWidth: "200px",
+            margin: "0 auto",
           }}
         >
           <Typography component="h1" variant="h5">
             Negative Split
           </Typography>
-          <TextField
-            type="number"
-            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-            id="distance"
-            label="Distance"
-            value={distance}
-            onChange={(e) => setDistance(e.target.value)}
-            error={isError}
-            helperText={isError ? "Between 1 and 100,000" : null}
-          />
-          <FormControl>
+          <FormControl fullWidth>
+            <TextField
+              type="number"
+              inputProps={{ min: "0", max: "200", step: "1" }}
+              id="distance"
+              label="Distance"
+              value={distance}
+              onChange={(e) => setDistance(e.target.value)}
+              error={isError}
+              helperText={isError ? "Between 0 and 200" : null}
+            />
+          </FormControl>
+          <FormControl fullWidth>
             <InputLabel id="metric-select-label">Metric</InputLabel>
             <Select
               labelId="metric-select-label"
@@ -154,7 +158,7 @@ export default function splitPace() {
               <MenuItem value="m">Miles</MenuItem>
             </Select>
           </FormControl>
-          <FormControl>
+          <FormControl fullWidth>
             <InputLabel id="popular-select-label">Popular</InputLabel>
             <Select
               labelId="popular-select-label"
