@@ -46,7 +46,9 @@ export default function SplitTable(props: Props) {
               key={row.km}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="right">{row.km}</TableCell>
+              <TableCell align="right">
+                {row.km % 1 ? row.km.toFixed(2) : row.km}
+              </TableCell>
               <TableCell align="right">{row.split}</TableCell>
               <TableCell align="right">{row.lapTime}</TableCell>
             </TableRow>
