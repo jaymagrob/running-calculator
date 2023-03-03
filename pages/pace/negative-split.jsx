@@ -15,6 +15,7 @@ import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useState } from "react";
 import SplitTable from "../../components/splitTable";
 import PopularDropdown from "../../components/form/popularDropdown";
+import DistanceInput from "../../components/form/distanceInput";
 
 function convertKtM(a) {
   return a / 1.609344;
@@ -113,18 +114,11 @@ export default function splitPace() {
           <Typography component="h1" variant="h5">
             Negative Split
           </Typography>
-          <FormControl fullWidth>
-            <TextField
-              type="number"
-              inputProps={{ min: "0", max: "200", step: "1" }}
-              id="distance"
-              label="Distance"
-              value={distance}
-              onChange={(e) => setDistance(e.target.value)}
-              error={isError}
-              helperText={isError ? "Between 0 and 200" : null}
-            />
-          </FormControl>
+          <DistanceInput
+            isError={isError}
+            distance={distance}
+            onChange={setDistance}
+          />
           <FormControl fullWidth>
             <InputLabel id="metric-select-label">Metric</InputLabel>
             <Select
