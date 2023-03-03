@@ -5,7 +5,6 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import Head from "next/head";
-import FormControl from "@mui/material/FormControl";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -17,14 +16,7 @@ import { useState } from "react";
 import SplitTable from "../../components/splitTable";
 import PopularDropdown from "../../components/form/popularDropdown";
 import DistanceInput from "../../components/form/distanceInput";
-
-function convertKtM(a) {
-  return a / 1.609344;
-}
-
-function convertMtK(a) {
-  return a * 1.609344;
-}
+import MetricInput from "../../components/form/metricInput";
 
 export default function splitPace() {
   const [distance, setDistance] = useState("5");
@@ -119,28 +111,12 @@ export default function splitPace() {
             distance={distance}
             onChange={setDistance}
           />
-          <FormControl fullWidth>
-            <InputLabel id="metric-select-label">Metric</InputLabel>
-            <Select
-              labelId="metric-select-label"
-              id="metric-select"
-              value={metric}
-              label="Metric"
-              onChange={(e) => {
-                const metric2 = e.target.value;
-                if (metric2 === "k") {
-                  setDistance(convertMtK(distance));
-                }
-                if (metric2 === "m") {
-                  setDistance(convertKtM(distance));
-                }
-                setMetric(metric2);
-              }}
-            >
-              <MenuItem value="k">Kilometers</MenuItem>
-              <MenuItem value="m">Miles</MenuItem>
-            </Select>
-          </FormControl>
+          <MetricInput
+            distance={distance}
+            metric={metric}
+            onDistanceChange={setDistance}
+            onMetricChange={setMetric}
+          />
           <PopularDropdown metric={metric} onChange={setDistance} />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TimePicker
