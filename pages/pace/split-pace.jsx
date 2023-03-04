@@ -1,30 +1,15 @@
-import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import dayjs from "dayjs";
 import Head from "next/head";
 import Container from "@mui/material/Container";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { useState } from "react";
 import SplitTable from "../../components/splitTable";
 import PopularDropdown from "../../components/form/popularDropdown";
 import DistanceInput from "../../components/form/distanceInput";
 import MetricInput from "../../components/form/metricInput";
-
-function convertKtM(a) {
-  return a / 1.609344;
-}
-
-function convertMtK(a) {
-  return a * 1.609344;
-}
+import TimePickerComponent from "../../components/form/timePicker";
 
 export default function splitPace() {
   const [distance, setDistance] = useState(3.2);
@@ -100,20 +85,7 @@ export default function splitPace() {
             onMetricChange={setMetric}
           />
           <PopularDropdown metric={metric} onChange={setDistance} />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <TimePicker
-              ampmInClock
-              views={["minutes", "seconds"]}
-              inputFormat="mm:ss"
-              mask="__:__"
-              label="Minutes and seconds"
-              value={time}
-              onChange={(newTime) => {
-                setTime(newTime);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
+          <TimePickerComponent time={time} onChange={setTime} />
           <Box
             sx={{
               display: "flex",
