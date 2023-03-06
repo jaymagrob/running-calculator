@@ -1,7 +1,4 @@
 /* tslint:disable */
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import Head from "next/head";
 import Container from "@mui/material/Container";
@@ -14,6 +11,7 @@ import PopularDropdown from "../../components/form/popularDropdown";
 import DistanceInput from "../../components/form/distanceInput";
 import MetricInput from "../../components/form/metricInput";
 import TimePickerComponent from "../../components/form/timePicker";
+import SplitAmount from "../../components/form/splitAmount";
 
 export default function splitPace() {
   const [distance, setDistance] = useState("5");
@@ -116,34 +114,11 @@ export default function splitPace() {
           />
           <PopularDropdown metric={metric} onChange={setDistance} />
           <TimePickerComponent time={time} onChange={setTime} />
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <InputLabel id="demo-simple-select-label">
-              Positive Split Amount:
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={positiveSplits}
-              label="Age"
-              onChange={(e) => setPositiveSplits(e.target.value)}
-            >
-              <MenuItem value={0.1}>10%</MenuItem>
-              <MenuItem value={0.09}>9%</MenuItem>
-              <MenuItem value={0.08}>8%</MenuItem>
-              <MenuItem value={0.07}>7%</MenuItem>
-              <MenuItem value={0.06}>6%</MenuItem>
-              <MenuItem value={0.05}>5%</MenuItem>
-              <MenuItem value={0.04}>4%</MenuItem>
-              <MenuItem value={0.03}>3%</MenuItem>
-              <MenuItem value={0.02}>2%</MenuItem>
-              <MenuItem value={0.01}>1%</MenuItem>
-            </Select>
-          </Box>
+          <SplitAmount
+            split={positiveSplits}
+            onChange={setPositiveSplits}
+            label="Positive Split Amount:"
+          />
           <Button variant="contained" onClick={(e) => onSubmit(e)}>
             Calculate Splits
           </Button>
