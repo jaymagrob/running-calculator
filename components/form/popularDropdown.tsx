@@ -29,7 +29,7 @@ type Props = {
 };
 
 export default function splitPace(popularDropdown: Props) {
-  const [popular, setPopular] = useState(null);
+  const [popular, setPopular] = useState("");
   const { onChange, metric } = popularDropdown;
 
   return (
