@@ -58,45 +58,53 @@ export default function splitPace() {
           content="Take your running to the next level with our split pace calculator. Whether you're looking to achieve a negative split or a positive split, our tool will help you calculate the optimal pace for each half of your run. Stay on track, set new personal bests, and become a stronger runner with our split pace calculator. Try it now!"
         />
       </Head>
-      <Container sx={{ minHeight: "calc(100vh - 100px)" }}>
+      <Container sx={{ background: "#eee" }}>
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 2,
-            width: "100%",
-            maxWidth: "200px",
-            margin: "0 auto",
+            flexDirection: "row",
+            flexWrap: "wrap",
           }}
         >
-          <Typography component="h1" variant="h5">
-            Split Pace
-          </Typography>
-          <DistanceInput
-            isError={isError}
-            distance={distance}
-            onChange={setDistance}
-          />
-          <MetricInput
-            distance={distance}
-            metric={metric}
-            onDistanceChange={setDistance}
-            onMetricChange={setMetric}
-          />
-          <PopularDropdown metric={metric} onChange={setDistance} />
-          <TimePickerComponent time={time} onChange={setTime} />
           <Box
             sx={{
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
+              gap: 2,
+              width: "100%",
+              maxWidth: "200px",
+              margin: "0 auto",
             }}
-          />
-          <Button variant="contained" onClick={(e) => onSubmit(e)}>
-            Calculate Splits
-          </Button>
+          >
+            <Typography component="h1" variant="h5">
+              Split Pace
+            </Typography>
+            <DistanceInput
+              isError={isError}
+              distance={distance}
+              onChange={setDistance}
+            />
+            <MetricInput
+              distance={distance}
+              metric={metric}
+              onDistanceChange={setDistance}
+              onMetricChange={setMetric}
+            />
+            <PopularDropdown metric={metric} onChange={setDistance} />
+            <TimePickerComponent time={time} onChange={setTime} />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            />
+            <Button variant="contained" onClick={(e) => onSubmit(e)}>
+              Calculate Splits
+            </Button>
+          </Box>
+          <SplitTable splits={splits} />
         </Box>
-        <SplitTable splits={splits} />
       </Container>
       <Container maxWidth="sm">
         <Typography

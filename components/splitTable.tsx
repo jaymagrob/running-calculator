@@ -29,7 +29,7 @@ export default function SplitTable(props: Props) {
         flexDirection: "column",
         alignItems: "center",
         gap: 2,
-        width: "100%",
+        flexGrow: 1,
       }}
     >
       <Table sx={{ width: "100%", maxWidth: 650 }} aria-label="simple table">

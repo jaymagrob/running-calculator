@@ -86,44 +86,52 @@ export default function splitPace() {
           content="If you're a runner looking to take on a challenge, try our positive split calculator to help you pace your runs to finish stronger than you started. Our tool will help you calculate the optimal pace for each half of your run to achieve a positive split. Don't settle for mediocrity, push yourself to new heights with our positive split calculator. Try it now!"
         />
       </Head>
-      <Container sx={{ minHeight: "calc(100vh - 100px)" }}>
+      <Container sx={{ background: "#eee" }}>
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 2,
-            width: "100%",
-            maxWidth: "200px",
-            margin: "0 auto",
+            flexDirection: "row",
+            flexWrap: "wrap",
           }}
         >
-          <Typography component="h1" variant="h5">
-            Positive Split
-          </Typography>
-          <DistanceInput
-            isError={isError}
-            distance={distance}
-            onChange={setDistance}
-          />
-          <MetricInput
-            distance={distance}
-            metric={metric}
-            onDistanceChange={setDistance}
-            onMetricChange={setMetric}
-          />
-          <PopularDropdown metric={metric} onChange={setDistance} />
-          <TimePickerComponent time={time} onChange={setTime} />
-          <SplitAmount
-            split={positiveSplits}
-            onChange={setPositiveSplits}
-            label="Positive Split Amount:"
-          />
-          <Button variant="contained" onClick={(e) => onSubmit(e)}>
-            Calculate Splits
-          </Button>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 2,
+              width: "100%",
+              maxWidth: "200px",
+              margin: "0 auto",
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              Positive Split
+            </Typography>
+            <DistanceInput
+              isError={isError}
+              distance={distance}
+              onChange={setDistance}
+            />
+            <MetricInput
+              distance={distance}
+              metric={metric}
+              onDistanceChange={setDistance}
+              onMetricChange={setMetric}
+            />
+            <PopularDropdown metric={metric} onChange={setDistance} />
+            <TimePickerComponent time={time} onChange={setTime} />
+            <SplitAmount
+              split={positiveSplits}
+              onChange={setPositiveSplits}
+              label="Positive Split Amount:"
+            />
+            <Button variant="contained" onClick={(e) => onSubmit(e)}>
+              Calculate Splits
+            </Button>
+          </Box>
+          <SplitTable splits={splits} />
         </Box>
-        <SplitTable splits={splits} />
       </Container>
       <Container maxwidth="sm">
         <Typography

@@ -86,44 +86,51 @@ export default function splitPace() {
           content="Looking to improve your running performance? Use our negative split calculator to calculate the optimal pace for each half of your run and achieve a negative split. Get faster, stronger and smarter with our tool. Try it now!"
         />
       </Head>
-      <Container sx={{ minHeight: "calc(100vh - 100px)" }}>
+      <Container sx={{ background: "#eee" }}>
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 2,
-            width: "100%",
-            maxWidth: "200px",
-            margin: "0 auto",
+            flexDirection: "row",
+            flexWrap: "wrap",
           }}
         >
-          <Typography component="h1" variant="h5">
-            Negative Split
-          </Typography>
-          <DistanceInput
-            isError={isError}
-            distance={distance}
-            onChange={setDistance}
-          />
-          <MetricInput
-            distance={distance}
-            metric={metric}
-            onDistanceChange={setDistance}
-            onMetricChange={setMetric}
-          />
-          <PopularDropdown metric={metric} onChange={setDistance} />
-          <TimePickerComponent time={time} onChange={setTime} />
-          <SplitAmount
-            split={negativeSplits}
-            onChange={setNegativeSplits}
-            label="Negative Split Amount:"
-          />
-          <Button variant="contained" onClick={(e) => onSubmit(e)}>
-            Calculate Splits
-          </Button>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 2,
+              width: "100%",
+              maxWidth: "200px",
+            }}
+          >
+            <Typography component="h1" variant="h5">
+              Negative Split
+            </Typography>
+            <DistanceInput
+              isError={isError}
+              distance={distance}
+              onChange={setDistance}
+            />
+            <MetricInput
+              distance={distance}
+              metric={metric}
+              onDistanceChange={setDistance}
+              onMetricChange={setMetric}
+            />
+            <PopularDropdown metric={metric} onChange={setDistance} />
+            <TimePickerComponent time={time} onChange={setTime} />
+            <SplitAmount
+              split={negativeSplits}
+              onChange={setNegativeSplits}
+              label="Negative Split Amount:"
+            />
+            <Button variant="contained" onClick={(e) => onSubmit(e)}>
+              Calculate Splits
+            </Button>
+          </Box>
+          <SplitTable splits={splits} />
         </Box>
-        <SplitTable splits={splits} />
       </Container>
       <Container maxwidth="sm">
         <Typography
