@@ -16,7 +16,6 @@ export default function timePicker(props: Props) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <TimePicker
         ampmInClock
-        views={["minutes", "seconds"]}
         inputFormat="mm:ss"
         mask="__:__"
         label="Minutes and seconds"

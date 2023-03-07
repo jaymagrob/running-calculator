@@ -40,7 +40,6 @@ export default function splitPace() {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TimePicker
               ampmInClock
-              views={["minutes", "seconds"]}
               inputFormat="mm:ss"
               mask="__:__"
               label="Pace Per Mile"
@@ -62,7 +61,6 @@ export default function splitPace() {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <TimePicker
               ampmInClock
-              views={["minutes", "seconds"]}
               inputFormat="mm:ss"
               mask="__:__"
               label="Pace Per Km"
